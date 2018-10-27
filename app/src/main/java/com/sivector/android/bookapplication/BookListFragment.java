@@ -10,12 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class BookListFragment extends Fragment {
-
+    BookLibrary mBookLibrary;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BookLibrary.getInstance();
+        mBookLibrary = BookLibrary.getInstance();
     }
 
     @Nullable
