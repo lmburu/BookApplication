@@ -13,7 +13,8 @@
     <EditText
         android:id="@+id/authorNameEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint="Name?"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +24,8 @@
     <EditText
         android:id="@+id/bookTitleEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint="Book title?"/>
     <Button
         android:id="@+id/publicationDate"
         android:layout_width="wrap_content"

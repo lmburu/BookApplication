@@ -11,6 +11,7 @@ public class BookLibrary {
 
     private BookLibrary() {
         this.mBooks = new ArrayList<>();
+        bookGenerator(); // Dummy data for testing.
     }
 
     public static BookLibrary getInstance(){
@@ -34,5 +35,18 @@ public class BookLibrary {
             }
         }
         return null;
+    }
+
+    public List<Book> getBooks() {
+        return mBooks;
+    }
+
+    private void bookGenerator(){
+        for(int i = 0; i < 100; i++ ) {
+            Book book = new Book();
+            book.setAuthor("smith" + i );
+            book.setTitle("Android Programming" + i );
+            mBooks.add(book);
+        }
     }
 }

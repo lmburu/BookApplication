@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">BookApplication</string>
+    <string name="date_picker_title">Publication Date</string>
+    <string name="alert_dialog_ok">Ok</string>
+    <string name="alert_dialog_cancel">Cancel</string>
 </resources>
