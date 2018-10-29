@@ -15,16 +15,26 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class BookFragment extends Fragment {
 
     private static final String DIALOG_DATE = "DialogDate";
     private static final int REQUEST_DATE = 0;
+    private static final String BOOK_ID = "bookid";
 
     private Book mBook;
     private EditText mAuthorNameEditText;
     private EditText mBookTitleEditText;
     private Button mDateOfPublicationButton;
+
+    public static BookFragment newInstance(UUID bookId){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(BOOK_ID, bookId);
+        BookFragment bookFragment = new BookFragment();
+        bookFragment.setArguments(bundle);
+        return bookFragment;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,10 +50,12 @@ public class BookFragment extends Fragment {
         mBookTitleEditText  = view.findViewById(R.id.bookTitleEditText);
         mDateOfPublicationButton = view.findViewById(R.id.publicationDate);
 
+        UUID bookId = (UUID) getArguments().getSerializable(BOOK_ID);
+        mBook = BookLibrary.getInstance().getBook(bookId);
+
         mBook.setAuthor(mAuthorNameEditText.getText().toString());
         mBook.setTitle(mBookTitleEditText.getText().toString());
         mBook.setPublicationDate(new Date());
-        //TODO add reference to date button. convert to string maybe?
 
         mDateOfPublicationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +64,6 @@ public class BookFragment extends Fragment {
                 DatePickerFragment dialog = DatePickerFragment.newInstance(mBook.getPublicationDate());
                 dialog.setTargetFragment(BookFragment.this, REQUEST_DATE);
                 dialog.show(fragmentManager, DIALOG_DATE);
-                Toast.makeText(getContext(), "Date goes here!", Toast.LENGTH_SHORT).show();
             }
         });
 
